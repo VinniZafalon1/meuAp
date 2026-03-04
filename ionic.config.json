@@ -1,0 +1,7 @@
+{
+  "name": "meuAp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
