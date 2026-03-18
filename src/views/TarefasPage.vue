@@ -10,8 +10,11 @@
     <ion-content class="ion-padding">
  
       <ion-input
-        v-model="novaTarefa"
-        placeholder="Digite uma tarefa"
+      label="Nome da Tarefa"
+      label-placement="floating"
+      v-model="novaTarefa"
+      :clear-input="true" 
+      placeholder="Digite uma tarefa"
       ></ion-input>
  
       <!-- BOTÃO -->
