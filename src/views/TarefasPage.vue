@@ -17,13 +17,11 @@
       placeholder="Digite uma tarefa"
       ></ion-input>
  
-      <!-- BOTÃO -->
       <ion-button expand="block" color="primary" @click="adicionarTarefa">
           <ion-icon :icon="addOutline" slot="start"></ion-icon>
         Adicionar Tarefa
       </ion-button>
  
-      <!-- LISTA -->
       <ion-list>
  
         <ion-item v-for="(tarefa, index) in tarefas" :key="index">
