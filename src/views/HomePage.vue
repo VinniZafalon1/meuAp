@@ -30,7 +30,6 @@ import router from '@/router';
 <style scoped>
 #container {
   text-align: center;
-  
   position: absolute;
   left: 0;
   right: 0;
