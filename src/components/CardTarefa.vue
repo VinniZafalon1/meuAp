@@ -1,4 +1,19 @@
 <script setup lang="ts">
+import {
+  IonCard,
+  IonCardContent,
+  IonItem,
+  IonIcon,
+  IonLabel,
+  IonButton
+} from '@ionic/vue'
+
+import {
+  checkmarkCircle,
+  ellipseOutline,
+  trashOutline
+} from 'ionicons/icons'
+
 interface Tarefa { 
   id: number
   texto: string
@@ -17,13 +32,14 @@ const emit = defineEmits<{
   <IonCard>
     <IonCardContent>
       <IonItem lines="none">
+        
         <IonIcon
           slot="start"
           :icon="props.tarefa.feita ? checkmarkCircle : ellipseOutline"
           :color="props.tarefa.feita ? 'success' : 'medium'"
           @click="emit('concluir', props.tarefa.id)"
         />
-        
+
         <IonLabel
           :style="props.tarefa.feita ? 'text-decoration: line-through' : ''"
         >
@@ -36,8 +52,9 @@ const emit = defineEmits<{
           color="danger"
           @click="emit('remover', props.tarefa.id)"
         >
-          <IonIcon icon="trashOutline" />
+          <IonIcon :icon="trashOutline" />
         </IonButton>
+
       </IonItem>
     </IonCardContent>
   </IonCard>

@@ -13,7 +13,22 @@ export function useTarefas() {
 
   const filtroAtivo = ref<'todas' | 'pendentes' | 'feitas'>('todas')
 
-  // computed: filtra por texto de busca E pelo filtro ativo
+  // 🔥 carregar do localStorage
+  const tarefasSalvas = localStorage.getItem('tarefas')
+  if (tarefasSalvas) {
+    tarefas.value = JSON.parse(tarefasSalvas)
+  }
+
+  // 🔥 WATCH FUNCIONANDO (salva automaticamente)
+  watch(
+    tarefas,
+    (novasTarefas) => {
+      localStorage.setItem('tarefas', JSON.stringify(novasTarefas))
+    },
+    { deep: true }
+  )
+
+  // computed: filtra por texto + filtro
   const filtradas = computed(() => {
     const termo = busca.value.toLowerCase()
     return tarefas.value
@@ -25,14 +40,18 @@ export function useTarefas() {
       })
   })
 
-  // computed: total de pendentes
+  // total de pendentes
   const totalPendentes = computed(
     () => tarefas.value.filter(t => !t.feita).length
   )
 
   function adicionar(texto: string) {
     if (!texto.trim()) return
-    tarefas.value.push({ id: Date.now(), texto, feita: false })
+    tarefas.value.push({
+      id: Date.now(),
+      texto,
+      feita: false
+    })
   }
 
   function remover(id: number) {
